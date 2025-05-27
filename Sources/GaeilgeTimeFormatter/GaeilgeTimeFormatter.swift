@@ -1,7 +1,7 @@
 import Foundation
 
-struct GaeilgeTimeFormatter {
-    static func getIrishTimePhrase(date: Date = Date()) -> String {
+public struct GaeilgeTimeFormatter {
+    public static func getIrishTimePhrase(date: Date = Date()) -> String {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
