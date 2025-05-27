@@ -4,6 +4,10 @@ import PackageDescription
 
 let package = Package(
     name: "GaeilgeTimeFormatter",
+    platforms: [
+        .watchOS(.v8),
+        .iOS(.v13)
+    ],
     products: [
         .library(
             name: "GaeilgeTimeFormatter",
