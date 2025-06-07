@@ -20,5 +20,8 @@ let package = Package(
             name: "GaeilgeTimeFormatterTests",
             dependencies: ["GaeilgeTimeFormatter"]
         ),
+        .executableTarget(
+            name: "GenerateTimes",
+            dependencies: ["GaeilgeTimeFormatter"]),
     ]
 )

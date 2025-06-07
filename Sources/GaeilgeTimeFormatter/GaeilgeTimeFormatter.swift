@@ -9,7 +9,6 @@ public struct GaeilgeTimeFormatter {
 
         func getFormattedHour(_ h: Int) -> String {
             let displayHour = h % 12 == 0 ? 12 : h % 12
-
             let hoursMap: [Int: String] = [
                 12: "a dó dhéag",
                 1: "a haon",
@@ -29,7 +28,6 @@ public struct GaeilgeTimeFormatter {
 
         func getFormattedNextHour(_ h: Int) -> String {
             let displayHour = h % 12 == 0 ? 12 : h % 12
-
             let hoursMap: [Int: String] = [
                 12: "a dó dhéag",
                 1: "a haon",
@@ -51,14 +49,14 @@ public struct GaeilgeTimeFormatter {
             var phrase: String
 
             if m == 1 {
-                phrase = "aon nóiméad"
+                phrase = "nóiméad amháin"
             } else if m == 2 {
                 phrase = "dhá nóiméad"
             } else if m == 3 {
                 phrase = "trí nóiméad"
             } else if m == 4 {
                 phrase = "ceithre nóiméad"
-            } else if m >= 5 && m <= 14 {
+            } else if m >= 5 && m <= 10 {
                 let numbersMap: [Int: String] = [
                     5: "cúig",
                     6: "sé",
@@ -66,37 +64,41 @@ public struct GaeilgeTimeFormatter {
                     8: "ocht",
                     9: "naoi",
                     10: "deich",
-                    11: "aon déag",
-                    12: "dó dhéag",
-                    13: "trí déag",
-                    14: "ceithre déag"
                 ]
                 phrase = "\(numbersMap[m]!) nóiméad"
+            } else if m >= 11 && m <= 14 {
+                let numbersMap: [Int: String] = [
+                    11: "aon",
+                    12: "dhá",
+                    13: "trí",
+                    14: "ceithre",
+                ]
+                phrase = "\(numbersMap[m]!) nóiméad déag"
             } else if m >= 16 && m <= 19 {
                 let numbersMap: [Int: String] = [
-                    16: "sé déag",
-                    17: "seacht déag",
-                    18: "ocht déag",
-                    19: "naoi déag"
+                    16: "sé",
+                    17: "seacht",
+                    18: "ocht",
+                    19: "naoi",
                 ]
-                phrase = "\(numbersMap[m]!) nóiméad"
+                phrase = "\(numbersMap[m]!) nóiméad déag"
             } else if m == 20 {
                 phrase = "fiche nóiméad"
             } else if m >= 21 && m <= 29 {
-                let unit = m % 10 // Get the last digit
+                let unit = m % 10
                 var unitPhrase: String
 
-                if unit == 1 { unitPhrase = "aon" }
-                else if unit == 2 { unitPhrase = "dhá" }
+                if unit == 1 { unitPhrase = "haon" }
+                else if unit == 2 { unitPhrase = "dó" }
                 else if unit == 3 { unitPhrase = "trí" }
-                else if unit == 4 { unitPhrase = "ceithre" }
+                else if unit == 4 { unitPhrase = "ceathair" }
                 else if unit == 5 { unitPhrase = "cúig" }
                 else if unit == 6 { unitPhrase = "sé" }
                 else if unit == 7 { unitPhrase = "seacht" }
-                else if unit == 8 { unitPhrase = "ocht" }
-                else { unitPhrase = "naoi" } // For 9
+                else if unit == 8 { unitPhrase = "hocht" }
+                else { unitPhrase = "naoi" }
 
-                phrase = "fiche is \(unitPhrase) nóiméad"
+                phrase = "fiche a \(unitPhrase) nóiméad"
             } else {
                 phrase = ""
             }
@@ -114,7 +116,7 @@ public struct GaeilgeTimeFormatter {
         } else if minute < 30 {
             return "Tá sé \(getFormattedMinutePhrase(minute)) tar éis \(getFormattedHour(hour))"
         } else {
-            let toMinute = 60 - minute // Calculate minutes remaining to the next hour
+            let toMinute = 60 - minute
             return "Tá sé \(getFormattedMinutePhrase(toMinute)) chun \(getFormattedNextHour(nextHour))"
         }
     }
